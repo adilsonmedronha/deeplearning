@@ -10,6 +10,9 @@ You  can find here a visualization of the latent spaces and a comparison of the 
 
 # PCA vs NLAE vs LAE 
 
+The results show that it's true the claim that a **linear autoencoder spans the same latent space as principal component analysis**. \
+And both are very different in comparison to non-linear autoencoder.
+
 ## Latent Space
 <img src="assets\nlae_latent_space.png"  width="500" height="450">
 <img src="assets\lae_latent_space.png"  width="500" height="450">
