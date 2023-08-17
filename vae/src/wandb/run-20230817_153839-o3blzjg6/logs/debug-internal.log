@@ -1,0 +1,291 @@
+2023-08-17 15:38:39,988 INFO    StreamThr :3802072 [internal.py:wandb_internal():86] W&B internal server running at pid: 3802072, started at: 2023-08-17 15:38:39.988068
+2023-08-17 15:38:39,990 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: status
+2023-08-17 15:38:39,991 INFO    WriterThread:3802072 [datastore.py:open_for_write():85] open: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/run-o3blzjg6.wandb
+2023-08-17 15:38:39,993 DEBUG   SenderThread:3802072 [sender.py:send():379] send: header
+2023-08-17 15:38:40,009 DEBUG   SenderThread:3802072 [sender.py:send():379] send: run
+2023-08-17 15:38:40,526 INFO    SenderThread:3802072 [dir_watcher.py:__init__():211] watching files in: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files
+2023-08-17 15:38:40,526 INFO    SenderThread:3802072 [sender.py:_start_run_threads():1121] run started: o3blzjg6 with start time 1692297519.987887
+2023-08-17 15:38:40,526 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: summary_record
+2023-08-17 15:38:40,527 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:38:40,535 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: check_version
+2023-08-17 15:38:40,535 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: check_version
+2023-08-17 15:38:40,639 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: run_start
+2023-08-17 15:38:40,643 DEBUG   HandlerThread:3802072 [system_info.py:__init__():31] System info init
+2023-08-17 15:38:40,643 DEBUG   HandlerThread:3802072 [system_info.py:__init__():46] System info init done
+2023-08-17 15:38:40,643 INFO    HandlerThread:3802072 [system_monitor.py:start():181] Starting system monitor
+2023-08-17 15:38:40,643 INFO    SystemMonitor:3802072 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-17 15:38:40,643 INFO    HandlerThread:3802072 [system_monitor.py:probe():201] Collecting system info
+2023-08-17 15:38:40,644 INFO    SystemMonitor:3802072 [interfaces.py:start():190] Started cpu monitoring
+2023-08-17 15:38:40,645 INFO    SystemMonitor:3802072 [interfaces.py:start():190] Started disk monitoring
+2023-08-17 15:38:40,647 INFO    SystemMonitor:3802072 [interfaces.py:start():190] Started gpu monitoring
+2023-08-17 15:38:40,648 INFO    SystemMonitor:3802072 [interfaces.py:start():190] Started memory monitoring
+2023-08-17 15:38:40,649 INFO    SystemMonitor:3802072 [interfaces.py:start():190] Started network monitoring
+2023-08-17 15:38:40,683 DEBUG   HandlerThread:3802072 [system_info.py:probe():195] Probing system
+2023-08-17 15:38:40,690 DEBUG   HandlerThread:3802072 [system_info.py:_probe_git():180] Probing git
+2023-08-17 15:38:40,706 DEBUG   HandlerThread:3802072 [system_info.py:_probe_git():188] Probing git done
+2023-08-17 15:38:40,706 DEBUG   HandlerThread:3802072 [system_info.py:probe():240] Probing system done
+2023-08-17 15:38:40,707 DEBUG   HandlerThread:3802072 [system_monitor.py:probe():210] {'os': 'Linux-5.4.0-88-generic-x86_64-with-glibc2.17', 'python': '3.8.16', 'heartbeatAt': '2023-08-17T18:38:40.683668', 'startedAt': '2023-08-17T18:38:39.980995', 'docker': None, 'cuda': None, 'args': ('--run_name', 'MNIST_test', '--dataset_path', '../../../../datasets/MNIST', '--dataset_name', 'MNIST', '--img_shape', '1', '28', '28', '--batch_size', '128', '--epochs', '5', '--z_dim', '10', '--n_images', '2', '--lr', '0.0001', '--w_init_method', 'xavier', '--model_save_path_best_loss_train', 'results/MNIST_test/weights/best_train/', '--model_save_path_best_loss_val', 'results/MNIST_test/weights/best_val/', '--model_save_path_last', 'results/MNIST_test/weights/', '--path2results', 'results/MNIST_test/imgs/', '--path2gif', '/gif/MNIST_MNIST_test.gif'), 'state': 'running', 'program': 'run.py', 'codePath': 'vae/src/run.py', 'git': {'remote': 'https://github.com/adilsonmedronha/deeplearning.git', 'commit': '18ac05ce14c58525f53b4f02aaca750ca46b444f'}, 'email': 'adilson.medronha@edu.pucrs.br', 'root': '/A/adilson/git/deeplearning', 'host': 'motoz-pin', 'username': 'adilson', 'executable': '/A/adilson/miniconda3/envs/tudo/bin/python', 'cpu_count': 16, 'cpu_count_logical': 32, 'cpu_freq': {'current': 2058.6198709677424, 'min': 2200.0, 'max': 3400.0}, 'cpu_freq_per_core': [{'current': 2047.943, 'min': 2200.0, 'max': 3400.0}, {'current': 1996.468, 'min': 2200.0, 'max': 3400.0}, {'current': 1889.778, 'min': 2200.0, 'max': 3400.0}, {'current': 2189.518, 'min': 2200.0, 'max': 3400.0}, {'current': 1888.341, 'min': 2200.0, 'max': 3400.0}, {'current': 2188.438, 'min': 2200.0, 'max': 3400.0}, {'current': 1967.72, 'min': 2200.0, 'max': 3400.0}, {'current': 2188.841, 'min': 2200.0, 'max': 3400.0}, {'current': 2155.66, 'min': 2200.0, 'max': 3400.0}, {'current': 2044.31, 'min': 2200.0, 'max': 3400.0}, {'current': 2740.506, 'min': 2200.0, 'max': 3400.0}, {'current': 2789.654, 'min': 2200.0, 'max': 3400.0}, {'current': 1894.183, 'min': 2200.0, 'max': 3400.0}, {'current': 2141.358, 'min': 2200.0, 'max': 3400.0}, {'current': 1872.32, 'min': 2200.0, 'max': 3400.0}, {'current': 2138.042, 'min': 2200.0, 'max': 3400.0}, {'current': 1888.624, 'min': 2200.0, 'max': 3400.0}, {'current': 2192.313, 'min': 2200.0, 'max': 3400.0}, {'current': 1889.635, 'min': 2200.0, 'max': 3400.0}, {'current': 2189.003, 'min': 2200.0, 'max': 3400.0}, {'current': 1888.391, 'min': 2200.0, 'max': 3400.0}, {'current': 2191.215, 'min': 2200.0, 'max': 3400.0}, {'current': 1889.264, 'min': 2200.0, 'max': 3400.0}, {'current': 2192.297, 'min': 2200.0, 'max': 3400.0}, {'current': 1849.926, 'min': 2200.0, 'max': 3400.0}, {'current': 2106.862, 'min': 2200.0, 'max': 3400.0}, {'current': 1850.695, 'min': 2200.0, 'max': 3400.0}, {'current': 2101.145, 'min': 2200.0, 'max': 3400.0}, {'current': 1851.318, 'min': 2200.0, 'max': 3400.0}, {'current': 1915.501, 'min': 2200.0, 'max': 3400.0}, {'current': 2970.758, 'min': 2200.0, 'max': 3400.0}], 'disk': {'total': 879.1872825622559, 'used': 653.5063171386719}, 'gpu': 'NVIDIA GeForce GTX 1080 Ti', 'gpu_count': 3, 'gpu_devices': [{'name': 'NVIDIA GeForce GTX 1080 Ti', 'memory_total': 11721506816}, {'name': 'NVIDIA GeForce GTX 1080 Ti', 'memory_total': 11721506816}, {'name': 'NVIDIA TITAN Xp', 'memory_total': 12787122176}], 'memory': {'total': 125.75271224975586}}
+2023-08-17 15:38:40,707 INFO    HandlerThread:3802072 [system_monitor.py:probe():211] Finished collecting system info
+2023-08-17 15:38:40,707 INFO    HandlerThread:3802072 [system_monitor.py:probe():214] Publishing system info
+2023-08-17 15:38:40,707 DEBUG   HandlerThread:3802072 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-08-17 15:38:40,707 DEBUG   HandlerThread:3802072 [system_info.py:_save_pip():67] Saving pip packages done
+2023-08-17 15:38:40,707 DEBUG   HandlerThread:3802072 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-08-17 15:38:41,528 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/requirements.txt
+2023-08-17 15:38:41,529 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/conda-environment.yaml
+2023-08-17 15:38:41,529 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:38:42,380 DEBUG   HandlerThread:3802072 [system_info.py:_save_conda():86] Saving conda packages done
+2023-08-17 15:38:42,381 INFO    HandlerThread:3802072 [system_monitor.py:probe():216] Finished publishing system info
+2023-08-17 15:38:42,385 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:42,385 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-08-17 15:38:42,392 DEBUG   SenderThread:3802072 [sender.py:send():379] send: telemetry
+2023-08-17 15:38:42,393 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-17 15:38:42,393 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: stop_status
+2023-08-17 15:38:42,529 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/conda-environment.yaml
+2023-08-17 15:38:42,529 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-metadata.json
+2023-08-17 15:38:43,184 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/8fd2ew6q-wandb-metadata.json
+2023-08-17 15:38:43,529 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:45,033 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: status_report
+2023-08-17 15:38:45,530 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:46,530 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:47,605 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:47,606 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred train_0_c2b03ab538b2f929d878.png with policy now
+2023-08-17 15:38:47,610 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:47,610 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred val_0_621d164106f353c35133.png with policy now
+2023-08-17 15:38:47,610 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-17 15:38:48,523 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/dvo5tkx7-media/images/pred val_0_621d164106f353c35133.png
+2023-08-17 15:38:48,531 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:48,531 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_0_c2b03ab538b2f929d878.png
+2023-08-17 15:38:48,531 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_0_621d164106f353c35133.png
+2023-08-17 15:38:48,531 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media
+2023-08-17 15:38:48,532 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images
+2023-08-17 15:38:48,599 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/8e0naljs-media/images/pred train_0_c2b03ab538b2f929d878.png
+2023-08-17 15:38:49,419 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/5aqslixr-media/images/pred val_0_621d164106f353c35133.png
+2023-08-17 15:38:49,685 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/h5uo4ley-media/images/pred train_0_c2b03ab538b2f929d878.png
+2023-08-17 15:38:50,118 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: status_report
+2023-08-17 15:38:50,532 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:50,789 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:50,789 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred train_1_751a31c7173b615c65c1.png with policy now
+2023-08-17 15:38:50,792 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-17 15:38:50,794 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:50,794 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred val_1_138b8e39a0a67a166a2a.png with policy now
+2023-08-17 15:38:50,794 DEBUG   SenderThread:3802072 [sender.py:send():379] send: history
+2023-08-17 15:38:50,794 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: summary_record
+2023-08-17 15:38:50,795 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:38:51,532 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:38:51,532 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_1_751a31c7173b615c65c1.png
+2023-08-17 15:38:51,532 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_1_138b8e39a0a67a166a2a.png
+2023-08-17 15:38:51,533 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images
+2023-08-17 15:38:51,596 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/rhngvxsw-media/images/pred val_1_138b8e39a0a67a166a2a.png
+2023-08-17 15:38:51,761 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/jn5ehu1m-media/images/pred train_1_751a31c7173b615c65c1.png
+2023-08-17 15:38:52,532 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:52,642 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/tr3cap95-media/images/pred val_1_138b8e39a0a67a166a2a.png
+2023-08-17 15:38:53,690 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/0z621xhh-media/images/pred train_1_751a31c7173b615c65c1.png
+2023-08-17 15:38:53,985 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:53,986 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred train_2_06072745874522b826df.png with policy now
+2023-08-17 15:38:53,990 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-17 15:38:53,990 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:53,991 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred val_2_35304a8dfa30217b8139.png with policy now
+2023-08-17 15:38:53,991 DEBUG   SenderThread:3802072 [sender.py:send():379] send: history
+2023-08-17 15:38:53,992 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: summary_record
+2023-08-17 15:38:53,992 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:38:54,533 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:54,533 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:38:54,533 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_2_35304a8dfa30217b8139.png
+2023-08-17 15:38:54,534 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_2_06072745874522b826df.png
+2023-08-17 15:38:54,534 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images
+2023-08-17 15:38:54,608 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/bur6hxio-media/images/pred val_2_35304a8dfa30217b8139.png
+2023-08-17 15:38:55,005 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/r69pldqu-media/images/pred train_2_06072745874522b826df.png
+2023-08-17 15:38:55,219 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: status_report
+2023-08-17 15:38:55,398 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/1pw428k3-media/images/pred val_2_35304a8dfa30217b8139.png
+2023-08-17 15:38:56,064 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/30hwexiy-media/images/pred train_2_06072745874522b826df.png
+2023-08-17 15:38:56,534 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:57,233 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:57,233 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred train_3_b7deec8b688ea8990c7a.png with policy now
+2023-08-17 15:38:57,236 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-17 15:38:57,238 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:38:57,238 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred val_3_a49030afb3e37db50d00.png with policy now
+2023-08-17 15:38:57,239 DEBUG   SenderThread:3802072 [sender.py:send():379] send: history
+2023-08-17 15:38:57,239 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: summary_record
+2023-08-17 15:38:57,239 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:38:57,399 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-17 15:38:57,400 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: stop_status
+2023-08-17 15:38:57,535 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:38:57,535 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_3_b7deec8b688ea8990c7a.png
+2023-08-17 15:38:57,535 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_3_a49030afb3e37db50d00.png
+2023-08-17 15:38:57,536 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images
+2023-08-17 15:38:57,939 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/v7nwtgnn-media/images/pred val_3_a49030afb3e37db50d00.png
+2023-08-17 15:38:58,194 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/gjlzw5o3-media/images/pred train_3_b7deec8b688ea8990c7a.png
+2023-08-17 15:38:58,535 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:38:58,995 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/7l690sbs-media/images/pred val_3_a49030afb3e37db50d00.png
+2023-08-17 15:38:59,989 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/0pydwhb8-media/images/pred train_3_b7deec8b688ea8990c7a.png
+2023-08-17 15:39:00,240 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: status_report
+2023-08-17 15:39:00,515 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:39:00,515 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred train_4_db2e1cda434b66553328.png with policy now
+2023-08-17 15:39:00,520 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-17 15:39:00,521 DEBUG   SenderThread:3802072 [sender.py:send():379] send: files
+2023-08-17 15:39:00,521 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file media/images/pred val_4_70f54da1e9c141a856c7.png with policy now
+2023-08-17 15:39:00,522 DEBUG   SenderThread:3802072 [sender.py:send():379] send: history
+2023-08-17 15:39:00,522 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: summary_record
+2023-08-17 15:39:00,523 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:39:00,523 DEBUG   SenderThread:3802072 [sender.py:send():379] send: exit
+2023-08-17 15:39:00,523 INFO    SenderThread:3802072 [sender.py:send_exit():584] handling exit code: 0
+2023-08-17 15:39:00,523 INFO    SenderThread:3802072 [sender.py:send_exit():586] handling runtime: 19
+2023-08-17 15:39:00,523 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:39:00,524 INFO    SenderThread:3802072 [sender.py:send_exit():592] send defer
+2023-08-17 15:39:00,524 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,524 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 0
+2023-08-17 15:39:00,527 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,527 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 0
+2023-08-17 15:39:00,527 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 1
+2023-08-17 15:39:00,528 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,528 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 1
+2023-08-17 15:39:00,528 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,528 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 1
+2023-08-17 15:39:00,528 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 2
+2023-08-17 15:39:00,528 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,528 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 2
+2023-08-17 15:39:00,528 INFO    HandlerThread:3802072 [system_monitor.py:finish():190] Stopping system monitor
+2023-08-17 15:39:00,529 DEBUG   SystemMonitor:3802072 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-17 15:39:00,529 DEBUG   SystemMonitor:3802072 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-08-17 15:39:00,529 DEBUG   SystemMonitor:3802072 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-08-17 15:39:00,530 INFO    HandlerThread:3802072 [interfaces.py:finish():202] Joined cpu monitor
+2023-08-17 15:39:00,530 INFO    HandlerThread:3802072 [interfaces.py:finish():202] Joined disk monitor
+2023-08-17 15:39:00,537 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:39:00,537 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:39:00,537 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_4_70f54da1e9c141a856c7.png
+2023-08-17 15:39:00,537 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_created():271] file/dir created: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_4_db2e1cda434b66553328.png
+2023-08-17 15:39:00,538 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images
+2023-08-17 15:39:00,739 INFO    HandlerThread:3802072 [interfaces.py:finish():202] Joined gpu monitor
+2023-08-17 15:39:00,740 INFO    HandlerThread:3802072 [interfaces.py:finish():202] Joined memory monitor
+2023-08-17 15:39:00,740 INFO    HandlerThread:3802072 [interfaces.py:finish():202] Joined network monitor
+2023-08-17 15:39:00,741 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,741 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 2
+2023-08-17 15:39:00,741 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 3
+2023-08-17 15:39:00,741 DEBUG   SenderThread:3802072 [sender.py:send():379] send: stats
+2023-08-17 15:39:00,741 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,741 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 3
+2023-08-17 15:39:00,742 DEBUG   SenderThread:3802072 [sender.py:send():379] send: history
+2023-08-17 15:39:00,742 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: summary_record
+2023-08-17 15:39:00,742 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:39:00,743 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,743 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 3
+2023-08-17 15:39:00,743 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 4
+2023-08-17 15:39:00,743 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,743 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 4
+2023-08-17 15:39:00,743 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,743 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 4
+2023-08-17 15:39:00,743 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 5
+2023-08-17 15:39:00,743 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,743 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 5
+2023-08-17 15:39:00,743 DEBUG   SenderThread:3802072 [sender.py:send():379] send: summary
+2023-08-17 15:39:00,749 INFO    SenderThread:3802072 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-17 15:39:00,749 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,749 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 5
+2023-08-17 15:39:00,749 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 6
+2023-08-17 15:39:00,750 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,750 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 6
+2023-08-17 15:39:00,750 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,750 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 6
+2023-08-17 15:39:00,753 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: status_report
+2023-08-17 15:39:00,990 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 7
+2023-08-17 15:39:00,990 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:00,990 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 7
+2023-08-17 15:39:00,990 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:00,990 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 7
+2023-08-17 15:39:01,230 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/byqz0nqe-media/images/pred val_4_70f54da1e9c141a856c7.png
+2023-08-17 15:39:01,390 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/v0t09ds2-media/images/pred train_4_db2e1cda434b66553328.png
+2023-08-17 15:39:01,523 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: poll_exit
+2023-08-17 15:39:01,537 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/config.yaml
+2023-08-17 15:39:01,537 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:39:02,028 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/we45brul-media/images/pred val_4_70f54da1e9c141a856c7.png
+2023-08-17 15:39:02,354 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /tmp/tmpju7bsznswandb/tqs0al4x-media/images/pred train_4_db2e1cda434b66553328.png
+2023-08-17 15:39:02,538 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:39:03,667 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 8
+2023-08-17 15:39:03,667 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: poll_exit
+2023-08-17 15:39:03,667 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:03,667 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 8
+2023-08-17 15:39:03,668 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:03,668 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 8
+2023-08-17 15:39:03,668 INFO    SenderThread:3802072 [job_builder.py:build():281] Attempting to build job artifact
+2023-08-17 15:39:03,668 INFO    SenderThread:3802072 [job_builder.py:_get_source_type():400] is repo sourced job
+2023-08-17 15:39:03,670 INFO    SenderThread:3802072 [job_builder.py:build():374] adding wandb-job metadata file
+2023-08-17 15:39:03,674 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 9
+2023-08-17 15:39:03,674 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:03,674 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 9
+2023-08-17 15:39:03,675 DEBUG   SenderThread:3802072 [sender.py:send():379] send: artifact
+2023-08-17 15:39:04,539 INFO    Thread-12 :3802072 [dir_watcher.py:_on_file_modified():288] file/dir modified: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:39:04,543 INFO    SenderThread:3802072 [sender.py:send_artifact():1475] sent artifact job-https___github.com_adilsonmedronha_deeplearning.git_vae_src_run.py - {'id': 'QXJ0aWZhY3Q6NTQ0NDM4NzU3', 'digest': '3e01b5668d8a5f4a6df870b6283f6ba8', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-https___github.com_adilsonmedronha_deeplearning.git_vae_src_run.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-https___github.com_adilsonmedronha_deeplearning.git_vae_src_run.py', 'alias': 'v1'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjkxMTMxNDI1', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NTQ0NDM4NzU3', 'versionIndex': 1}}, 'version': 'v1'}
+2023-08-17 15:39:04,543 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:04,543 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 9
+2023-08-17 15:39:04,543 INFO    SenderThread:3802072 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-08-17 15:39:05,539 INFO    SenderThread:3802072 [dir_watcher.py:finish():388] scan: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files
+2023-08-17 15:39:05,540 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/config.yaml config.yaml
+2023-08-17 15:39:05,540 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log output.log
+2023-08-17 15:39:05,540 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/requirements.txt requirements.txt
+2023-08-17 15:39:05,546 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/conda-environment.yaml conda-environment.yaml
+2023-08-17 15:39:05,546 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json wandb-summary.json
+2023-08-17 15:39:05,550 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-metadata.json wandb-metadata.json
+2023-08-17 15:39:05,557 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_4_70f54da1e9c141a856c7.png media/images/pred val_4_70f54da1e9c141a856c7.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_1_138b8e39a0a67a166a2a.png media/images/pred val_1_138b8e39a0a67a166a2a.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_2_06072745874522b826df.png media/images/pred train_2_06072745874522b826df.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_3_a49030afb3e37db50d00.png media/images/pred val_3_a49030afb3e37db50d00.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_4_db2e1cda434b66553328.png media/images/pred train_4_db2e1cda434b66553328.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_1_751a31c7173b615c65c1.png media/images/pred train_1_751a31c7173b615c65c1.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_0_621d164106f353c35133.png media/images/pred val_0_621d164106f353c35133.png
+2023-08-17 15:39:05,558 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_0_c2b03ab538b2f929d878.png media/images/pred train_0_c2b03ab538b2f929d878.png
+2023-08-17 15:39:05,559 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred train_3_b7deec8b688ea8990c7a.png media/images/pred train_3_b7deec8b688ea8990c7a.png
+2023-08-17 15:39:05,559 INFO    SenderThread:3802072 [dir_watcher.py:finish():402] scan save: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/media/images/pred val_2_35304a8dfa30217b8139.png media/images/pred val_2_35304a8dfa30217b8139.png
+2023-08-17 15:39:05,559 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 10
+2023-08-17 15:39:05,559 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:05,559 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 10
+2023-08-17 15:39:05,559 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:05,560 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 10
+2023-08-17 15:39:05,560 INFO    SenderThread:3802072 [file_pusher.py:finish():159] shutting down file pusher
+2023-08-17 15:39:05,985 INFO    wandb-upload_0:3802072 [upload_job.py:push():131] Uploaded file /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/output.log
+2023-08-17 15:39:06,002 INFO    wandb-upload_1:3802072 [upload_job.py:push():131] Uploaded file /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/config.yaml
+2023-08-17 15:39:06,085 INFO    wandb-upload_2:3802072 [upload_job.py:push():131] Uploaded file /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/requirements.txt
+2023-08-17 15:39:06,156 INFO    wandb-upload_4:3802072 [upload_job.py:push():131] Uploaded file /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/wandb-summary.json
+2023-08-17 15:39:06,157 INFO    wandb-upload_3:3802072 [upload_job.py:push():131] Uploaded file /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/files/conda-environment.yaml
+2023-08-17 15:39:06,357 INFO    Thread-11 :3802072 [sender.py:transition_state():612] send defer: 11
+2023-08-17 15:39:06,357 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:06,357 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 11
+2023-08-17 15:39:06,358 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:06,358 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 11
+2023-08-17 15:39:06,358 INFO    SenderThread:3802072 [file_pusher.py:join():164] waiting for file pusher
+2023-08-17 15:39:06,358 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 12
+2023-08-17 15:39:06,358 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:06,358 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 12
+2023-08-17 15:39:06,358 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:06,358 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 12
+2023-08-17 15:39:06,358 INFO    SenderThread:3802072 [file_stream.py:finish():593] file stream finish called
+2023-08-17 15:39:06,524 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: keepalive
+2023-08-17 15:39:06,575 INFO    SenderThread:3802072 [file_stream.py:finish():597] file stream finish is done
+2023-08-17 15:39:06,575 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 13
+2023-08-17 15:39:06,575 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:06,575 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 13
+2023-08-17 15:39:06,576 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:06,576 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 13
+2023-08-17 15:39:06,576 INFO    SenderThread:3802072 [sender.py:transition_state():612] send defer: 14
+2023-08-17 15:39:06,576 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: defer
+2023-08-17 15:39:06,576 DEBUG   SenderThread:3802072 [sender.py:send():379] send: final
+2023-08-17 15:39:06,576 INFO    HandlerThread:3802072 [handler.py:handle_request_defer():170] handle defer: 14
+2023-08-17 15:39:06,577 DEBUG   SenderThread:3802072 [sender.py:send():379] send: footer
+2023-08-17 15:39:06,577 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: defer
+2023-08-17 15:39:06,577 INFO    SenderThread:3802072 [sender.py:send_request_defer():608] handle sender defer: 14
+2023-08-17 15:39:06,577 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: poll_exit
+2023-08-17 15:39:06,578 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: poll_exit
+2023-08-17 15:39:06,578 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: server_info
+2023-08-17 15:39:06,578 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: server_info
+2023-08-17 15:39:06,581 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: get_summary
+2023-08-17 15:39:06,582 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: sampled_history
+2023-08-17 15:39:06,582 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: job_info
+2023-08-17 15:39:06,752 DEBUG   SenderThread:3802072 [sender.py:send_request():406] send_request: job_info
+2023-08-17 15:39:06,752 INFO    MainThread:3802072 [wandb_run.py:_footer_history_summary_info():3481] rendering history
+2023-08-17 15:39:06,752 INFO    MainThread:3802072 [wandb_run.py:_footer_history_summary_info():3513] rendering summary
+2023-08-17 15:39:06,753 INFO    MainThread:3802072 [wandb_run.py:_footer_sync_info():3440] logging synced files
+2023-08-17 15:39:06,753 DEBUG   HandlerThread:3802072 [handler.py:handle_request():144] handle_request: shutdown
+2023-08-17 15:39:06,753 INFO    HandlerThread:3802072 [handler.py:finish():857] shutting down handler
+2023-08-17 15:39:07,583 INFO    WriterThread:3802072 [datastore.py:close():294] close: /A/adilson/git/deeplearning/vae/src/wandb/run-20230817_153839-o3blzjg6/run-o3blzjg6.wandb
+2023-08-17 15:39:07,752 INFO    SenderThread:3802072 [sender.py:finish():1552] shutting down sender
+2023-08-17 15:39:07,752 INFO    SenderThread:3802072 [file_pusher.py:finish():159] shutting down file pusher
+2023-08-17 15:39:07,752 INFO    SenderThread:3802072 [file_pusher.py:join():164] waiting for file pusher

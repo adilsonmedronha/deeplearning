@@ -1,0 +1,241 @@
+{
+    "os": "Linux-5.4.0-88-generic-x86_64-with-glibc2.17",
+    "python": "3.8.16",
+    "heartbeatAt": "2023-08-17T18:38:40.683668",
+    "startedAt": "2023-08-17T18:38:39.980995",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--run_name",
+        "MNIST_test",
+        "--dataset_path",
+        "../../../../datasets/MNIST",
+        "--dataset_name",
+        "MNIST",
+        "--img_shape",
+        "1",
+        "28",
+        "28",
+        "--batch_size",
+        "128",
+        "--epochs",
+        "5",
+        "--z_dim",
+        "10",
+        "--n_images",
+        "2",
+        "--lr",
+        "0.0001",
+        "--w_init_method",
+        "xavier",
+        "--model_save_path_best_loss_train",
+        "results/MNIST_test/weights/best_train/",
+        "--model_save_path_best_loss_val",
+        "results/MNIST_test/weights/best_val/",
+        "--model_save_path_last",
+        "results/MNIST_test/weights/",
+        "--path2results",
+        "results/MNIST_test/imgs/",
+        "--path2gif",
+        "/gif/MNIST_MNIST_test.gif"
+    ],
+    "state": "running",
+    "program": "run.py",
+    "codePath": "vae/src/run.py",
+    "git": {
+        "remote": "https://github.com/adilsonmedronha/deeplearning.git",
+        "commit": "18ac05ce14c58525f53b4f02aaca750ca46b444f"
+    },
+    "email": "adilson.medronha@edu.pucrs.br",
+    "root": "/A/adilson/git/deeplearning",
+    "host": "motoz-pin",
+    "username": "adilson",
+    "executable": "/A/adilson/miniconda3/envs/tudo/bin/python",
+    "cpu_count": 16,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2058.6198709677424,
+        "min": 2200.0,
+        "max": 3400.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2047.943,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1996.468,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1889.778,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2189.518,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1888.341,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2188.438,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1967.72,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2188.841,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2155.66,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2044.31,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2740.506,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2789.654,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1894.183,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2141.358,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1872.32,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2138.042,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1888.624,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2192.313,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1889.635,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2189.003,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1888.391,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2191.215,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1889.264,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2192.297,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1849.926,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2106.862,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1850.695,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2101.145,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1851.318,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 1915.501,
+            "min": 2200.0,
+            "max": 3400.0
+        },
+        {
+            "current": 2970.758,
+            "min": 2200.0,
+            "max": 3400.0
+        }
+    ],
+    "disk": {
+        "total": 879.1872825622559,
+        "used": 653.5063171386719
+    },
+    "gpu": "NVIDIA GeForce GTX 1080 Ti",
+    "gpu_count": 3,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "memory_total": 11721506816
+        },
+        {
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "memory_total": 11721506816
+        },
+        {
+            "name": "NVIDIA TITAN Xp",
+            "memory_total": 12787122176
+        }
+    ],
+    "memory": {
+        "total": 125.75271224975586
+    }
+}
