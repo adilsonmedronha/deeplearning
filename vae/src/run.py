@@ -3,33 +3,31 @@ import os
 import numpy as np
 import torch
 import torch.nn as nn
-import torch.nn.init as init
 import torch.optim as optim
 import torch.nn.functional as F
 import torchvision
 import torchvision.transforms as transforms
-from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from torchvision.datasets import CelebA, MNIST
 from tqdm import tqdm
 
 import sys; sys.path.append("../utils")
-from utils import create_gif_from_folder, viz, plot_losses, save_model, get_args
+from utils import create_gif_from_folder, viz, plot_losses, save_model, get_args, get_models
 
-import wandb
-wandb.init(project="vae")
+#import wandb
+#wandb.init(project="vae")
 
 def get_data_loaders(args):
     # ignore #channels
     temp_img_shape = args.img_shape[1:]
     transform = transforms.Compose([transforms.Resize(tuple(temp_img_shape)), transforms.ToTensor()])
     if args.dataset_name == "MNIST":
-        train_dataset = MNIST(root=args.dataset_path, train=True, transform=transform, download=True)
-        val_dataset = MNIST(root=args.dataset_path, train=False, transform=transform, download=True)
+        train_dataset = MNIST(root=args.dataset_path, train=True, transform=transform, download=False)
+        val_dataset = MNIST(root=args.dataset_path, train=False, transform=transform, download=False)
     elif args.dataset_name == "CelebA":
-        train_dataset = CelebA(root=args.dataset_path, split='train', transform=transform, download=True)
-        val_dataset = CelebA(root=args.dataset_path, split='test', transform=transform, download=True)
+        train_dataset = CelebA(root=args.dataset_path, split='train', transform=transform, download=False)
+        val_dataset = CelebA(root=args.dataset_path, split='test', transform=transform, download=False)
     else: raise ValueError("Dataset name not found.")
     
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=16)
@@ -54,74 +52,10 @@ def elbo_loss(x, pred, z_mean, z_logvar):
     """
     reconstruction_loss = torch.sum(((pred - x) ** 2))
     kl_divergence = -0.5 * torch.sum(1 + z_logvar - z_mean.pow(2) - z_logvar.exp())
+    # TODO save reconstruction_loss and kl_divergence separately to plot them later
+    # wandb.log({'reconstruction_loss': reconstruction_loss, 'kl_divergence': kl_divergence})
+    # and check if there is vanishing                               
     return reconstruction_loss + kl_divergence
-
-
-class Vae(nn.Module):
-    def __init__(self, latent_dim=20, 
-                 image_shape=(1, 28, 28),
-                w_init_method="xavier", 
-                device="cuda"):
-        
-        super(Vae, self).__init__()
-        self.image_shape = image_shape
-        self.device = device
-        self.features = np.prod(self.image_shape)
-        self.latent_dim = latent_dim
-
-        # encoder <==> q(z|x)
-        self.encoder = nn.Sequential(
-            nn.Linear(self.features, 256),
-            nn.LeakyReLU(0.2),
-            nn.Linear(256, 128),
-            nn.LeakyReLU(0.2),
-            nn.Linear(128, self.latent_dim * 2)
-        )
-
-        # decoder <==> p(x|z)
-        self.decoder = nn.Sequential(
-            nn.Linear(self.latent_dim, 128),
-            nn.LeakyReLU(0.2),
-            nn.Linear(128, 256),
-            nn.LeakyReLU(0.2),
-            nn.Linear(256, self.features),
-            nn.Sigmoid()
-        )
-
-        for layer in self.encoder:
-            self.initialize_weights(layer, method=w_init_method)
-        for layer in self.decoder:
-            self.initialize_weights(layer, method=w_init_method)
-    
-    def initialize_weights(self, layer, method):
-        if isinstance(layer, nn.Linear):
-            if method == 'xavier':
-                init.xavier_normal_(layer.weight)
-            elif method == 'he':
-                init.kaiming_normal_(layer.weight, mode='fan_in', nonlinearity='relu')
-            init.constant_(layer.bias, 0.0)
-
-    def trick(self, mean, std):
-        epsilon = torch.randn_like(std)
-        return mean + std * epsilon
-
-    def forward(self, x):
-        x = x.view(-1, self.features)
-        z = self.encoder(x)
-        mu, logvar = torch.chunk(z, 2, dim=1)
-        std = torch.exp(0.5 * logvar)
-        reparameterized = self.trick(mu, std)
-        pred = self.decoder(reparameterized)
-        pred = pred.reshape(-1, *self.image_shape)
-        return pred, mu, std
-
-    def sampler(self, num_samples=16):
-        sample = Variable(torch.randn(num_samples, self.latent_dim))
-        sample = sample.to(self.device)
-        pred = self.decoder(sample)
-        pred = pred.reshape(-1, *self.image_shape)
-        pred = torch.asarray(pred)
-        return pred
 
 
 def train(args, model, train_loader, optimizer, device, indices_images):
@@ -142,9 +76,9 @@ def train(args, model, train_loader, optimizer, device, indices_images):
             pbar.update(x.size(0))
             
             # pbar.set_postfix(loss=torch.mean(loss).item())
-            if idx % 1000 == 0:
+            if idx % 500 == 0:
                 sampled = model.sampler(num_samples=train_loader.batch_size)
-                merged = torch.cat((pred, sampled), dim=0)
+                merged = torch.cat((x, pred, sampled), dim=0)
                 if not os.path.exists(args.path2results): os.makedirs(args.path2results)
                 viz(merged, f"{args.path2results}/rec_and_sampled_{idx}.png")
             if idx in indices_images:
@@ -229,19 +163,16 @@ def train_model(model,
                 print(f'Early stopping at epoch {epoch}.')
                 break
         
-        wandb.log({'train_loss': train_loss, 
-                   'val_loss': val_loss, 
-                   'best_val_loss': best_val_loss,
-                   'pred train': wandb.Image(images_train, caption='train'),
-                   'pred val': wandb.Image(images_val, caption='val')},
-                    step=epoch+1)
+        # wandb.log({'train_loss': train_loss, 
+        #            'val_loss': val_loss, 
+        #            'best_val_loss': best_val_loss,
+        #            'pred train': wandb.Image(images_train, caption='train'),
+        #            'pred val': wandb.Image(images_val, caption='val')},
+        #             step=epoch+1)
 
 def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = Vae(latent_dim=args.z_dim,
-                image_shape=args.img_shape,
-                w_init_method=args.w_init_method,
-                device=device)
+    model = get_models(args, device)
 
     print("Device:", device)
     model = model.to(device)

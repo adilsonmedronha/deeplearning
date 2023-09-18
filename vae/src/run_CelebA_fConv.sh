@@ -1,14 +1,14 @@
 #!/bin/bash
 
-RUN_NAME="CelebA_linear_new"
+RUN_NAME="CelebA_fcvae"
 RESULT_PATH="results/$RUN_NAME"
 
 python run.py \
     --run_name $RUN_NAME \
-    --model_type "lvae"  \
+    --model_type "fcvae"  \
     --dataset_path "/media/SSD/DATASETS/CelebA_tiny/CelebA/" \
     --dataset_name CelebA \
-    --img_shape 3 128 128 \
+    --img_shape 3 125 125 \
     --batch_size 32 \
     --epochs 10 \
     --z_dim 20 \
