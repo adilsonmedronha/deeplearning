@@ -1,10 +1,6 @@
 #!/bin/bash
 
-<<<<<<< HEAD
 RUN_NAME="CelebA_pcvae_mais_capacidade_v2"
-=======
-RUN_NAME="CelebA_pcvae"
->>>>>>> c77f9aaf56f8d37e33390584cdc0c9c10bf8b54c
 RESULT_PATH="results/$RUN_NAME"
 
 python run.py \
