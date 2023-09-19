@@ -87,30 +87,25 @@ class PCvae(nn.Module):
 
         # encoder <==> q(z|x)
         self.encoder = nn.Sequential(
-            nn.Conv2d(3, 92, kernel_size=5, stride=2), 
-            nn.LeakyReLU(),
-            nn.AvgPool2d(2, 2),  
-            nn.Conv2d(92, 64, kernel_size=5),
-            nn.BatchNorm2d(64),
+            nn.Conv2d(3, 128, kernel_size=3), 
+            nn.LeakyReLU(0.4),
+            nn.MaxPool2d(2, 2),  
+            nn.Conv2d(128, 64, kernel_size=3, stride=2),
             nn.LeakyReLU(),
             nn.Dropout(0.1),
             nn.MaxPool2d(2, 2),
-            nn.Conv2d(64, 16, kernel_size=5),
-            nn.LeakyReLU(),
-            nn.Dropout(0.2),
-            nn.AvgPool2d(4, 4),
-            nn.Sigmoid()
+            nn.Conv2d(64, 32, kernel_size=3, stride=2),
+            nn.LeakyReLU()
         )
 
         # decoder <==> p(x|z)
         self.decoder = nn.Sequential(
-            nn.Linear(32, 192),
+            nn.Linear(784, 256),
             nn.LeakyReLU(0.2),
             nn.Dropout(0.6),
-            nn.Linear(192, 256),
-            nn.BatchNorm1d(256),
+            nn.Linear(256, 512),
             nn.LeakyReLU(0.3),
-            nn.Linear(256, self.features),
+            nn.Linear(512, self.features),
             nn.Sigmoid()
         )
 
@@ -132,22 +127,20 @@ class PCvae(nn.Module):
         return mean + std * epsilon
 
     def forward(self, x):
-        print(f'x {x.shape}')
-        z = self.encoder(x)
-        print(f'z {z.shape}')
-        z = z.reshape(z.shape[0], -1) # 144
-        mu, logvar = torch.chunk(z, 2, dim=1) # 72, 72
-        print(f'mu {mu.shape}, logvar {logvar.shape}')
+        z = self.encoder(x) # 128, 128, 2, 2
+        #print(f"z shape {z.shape}")
+        z = z.reshape(z.shape[0], -1)
+        #print(f"z shape {z.shape}")
+        mu, logvar = torch.chunk(z, 2, dim=1) # 32, 32
         std = torch.exp(0.5 * logvar)
-        reparameterized = self.trick(mu, std)
-        print(f'reparameterized {reparameterized.shape}')
-        pred = self.decoder(reparameterized)
-        print(f'pred {pred.shape}')
-        pred = pred.reshape(-1, *self.image_shape)
+        #print(f"mu shape {mu.shape}")
+        reparameterized = self.trick(mu, std) # 128, 32
+        pred = self.decoder(reparameterized) # 128, 46875
+        pred = pred.reshape(-1, *self.image_shape) # 128, 3, 125, 125
         return pred, mu, std
 
     def sampler(self, num_samples=16):
-        sample = Variable(torch.randn(num_samples, 32))
+        sample = Variable(torch.randn(num_samples, 784))
         sample = sample.to(self.device)
         pred = self.decoder(sample)
         pred = pred.reshape(-1, *self.image_shape)

@@ -15,8 +15,8 @@ from tqdm import tqdm
 import sys; sys.path.append("../utils")
 from utils import create_gif_from_folder, viz, plot_losses, save_model, get_args, get_models
 
-#import wandb
-#wandb.init(project="vae")
+import wandb
+wandb.init(project="vae")
 
 def get_data_loaders(args):
     # ignore #channels
@@ -37,7 +37,7 @@ def get_data_loaders(args):
     return train_loader, val_loader
 
 
-def elbo_loss(x, pred, z_mean, z_logvar):
+def elbo_loss(x, pred, z_mean, z_logvar, beta):
     """
     loss = reconstruction_loss + KL
     KL: KL divergence between q(z|x) and p(z)
@@ -53,12 +53,13 @@ def elbo_loss(x, pred, z_mean, z_logvar):
     reconstruction_loss = torch.sum(((pred - x) ** 2))
     kl_divergence = -0.5 * torch.sum(1 + z_logvar - z_mean.pow(2) - z_logvar.exp())
     # TODO save reconstruction_loss and kl_divergence separately to plot them later
-    # wandb.log({'reconstruction_loss': reconstruction_loss, 'kl_divergence': kl_divergence})
-    # and check if there is vanishing                               
-    return reconstruction_loss + kl_divergence
+    wandb.log({'elbo':reconstruction_loss + kl_divergence,
+               'reconstruction_loss': reconstruction_loss, 
+               'kl_divergence': beta * kl_divergence})
+    return reconstruction_loss +  beta * kl_divergence
 
 
-def train(args, model, train_loader, optimizer, device, indices_images):
+def train(args, model, train_loader, optimizer, device, indices_images, beta):
     train_loss = 0
     batch_losses = []
     num_samples = len(train_loader.dataset)
@@ -69,19 +70,20 @@ def train(args, model, train_loader, optimizer, device, indices_images):
             optimizer.zero_grad()
             x = x.to(device)
             pred, mu, std = model(x)
-            loss = elbo_loss(x, pred, mu, std)
+            loss = elbo_loss(x, pred, mu, std, beta)
             loss.backward()
             optimizer.step()
             train_loss += loss.item()
             pbar.update(x.size(0))
             
             # pbar.set_postfix(loss=torch.mean(loss).item())
-            if idx % 500 == 0:
+            if idx in indices_images:
+                print(idx, indices_images, "entrou")
                 sampled = model.sampler(num_samples=train_loader.batch_size)
                 merged = torch.cat((x, pred, sampled), dim=0)
                 if not os.path.exists(args.path2results): os.makedirs(args.path2results)
                 viz(merged, f"{args.path2results}/rec_and_sampled_{idx}.png")
-            if idx in indices_images:
+
                 pred = pred.reshape(-1, *args.img_shape).detach()
                 images.append(pred.cpu())
             batch_losses.append(loss.item())
@@ -90,7 +92,7 @@ def train(args, model, train_loader, optimizer, device, indices_images):
     return (train_loss / num_samples), batch_losses, images
 
 
-def val(args, model, val_loader, device, indices_images):
+def val(args, model, val_loader, device, indices_images, beta):
     
     val_loss = 0
     num_samples = len(val_loader.dataset)
@@ -102,7 +104,7 @@ def val(args, model, val_loader, device, indices_images):
         for idx, (x, _) in enumerate(val_loader):
             x = x.to(device)
             pred, mu, std = model(x)
-            loss = elbo_loss(x, pred, mu, std).item()
+            loss = elbo_loss(x, pred, mu, std, beta).item()
             val_loss += loss
             pbar.update(x.size(0))
             if idx in indices_images:
@@ -132,19 +134,25 @@ def train_model(model,
     best_val_loss = float('inf')
     best_train_loss = float('inf')
     early_stop_counter = 0
+    beta = 1
     for epoch in range(epochs):
+        if epoch > 0:
+            beta = 15
+        print(f"\nBeta {beta} epoch {epoch} \n")
         train_loss, batch_train_loss, images_train = train(args,
                                                            model, 
                                                            train_loader, 
                                                            optimizer, 
                                                            device, 
-                                                           indices_images)
+                                                           indices_images,
+                                                           beta)
         
         val_loss, batch_val_loss, images_val  = val(args,
                                                     model, 
                                                     val_loader, 
                                                     device, 
-                                                    indices_images)
+                                                    indices_images, 
+                                                    beta)
         # scheduler.step(val_loss)
         if val_loss < best_val_loss:
             best_val_loss = val_loss
@@ -163,12 +171,10 @@ def train_model(model,
                 print(f'Early stopping at epoch {epoch}.')
                 break
         
-        # wandb.log({'train_loss': train_loss, 
-        #            'val_loss': val_loss, 
-        #            'best_val_loss': best_val_loss,
-        #            'pred train': wandb.Image(images_train, caption='train'),
-        #            'pred val': wandb.Image(images_val, caption='val')},
-        #             step=epoch+1)
+        wandb.log({'train_loss': train_loss, 
+                   'val_loss': val_loss, 
+                   'best_val_loss': best_val_loss},
+                    step=epoch+1)
 
 def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
