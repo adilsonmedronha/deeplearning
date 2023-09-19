@@ -1,6 +1,10 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 RUN_NAME="CelebA_pcvae_mais_capacidade_v2"
+=======
+RUN_NAME="CelebA_pcvae"
+>>>>>>> c77f9aaf56f8d37e33390584cdc0c9c10bf8b54c
 RESULT_PATH="results/$RUN_NAME"
 
 python run.py \
@@ -13,7 +17,11 @@ python run.py \
     --epochs 100 \
     --z_dim 20 \
     --n_images 2 \
+<<<<<<< HEAD
     --lr 0.0001 \
+=======
+    --lr 0.00001 \
+>>>>>>> c77f9aaf56f8d37e33390584cdc0c9c10bf8b54c
     --w_init_method he \
     --model_save_path_best_loss_train "$RESULT_PATH/weights/best_train/" \
     --model_save_path_best_loss_val "$RESULT_PATH/weights/best_val/" \
