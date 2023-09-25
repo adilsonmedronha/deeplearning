@@ -39,7 +39,8 @@ def get_data_loaders(args):
 
 def elbo_loss(x, pred, z_mean, z_logvar, beta):
     """
-    loss = reconstruction_loss + KL
+    log(p(x)) = KL(q(z|x) || p(z)) + elbo 
+    mse - kl = elbo
     KL: KL divergence between q(z|x) and p(z)
         KL[ q(z|x) || p(z) ] <==> KL[ N(u, std) || N(0, 1) ]
         https://arxiv.org/pdf/1312.6114.pdf
