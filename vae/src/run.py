@@ -6,35 +6,17 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import torchvision
-import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from torchvision.datasets import CelebA, MNIST
 from tqdm import tqdm
+import torchinfo
 
 import sys; sys.path.append("../utils")
-from utils import create_gif_from_folder, viz, plot_losses, save_model, get_args, get_models
+from utils import create_gif_from_folder, viz, plot_losses, save_model, get_args, get_models, get_data_loaders, log
 
 import wandb
 wandb.init(project="vae")
-
-def get_data_loaders(args):
-    # ignore #channels
-    temp_img_shape = args.img_shape[1:]
-    transform = transforms.Compose([transforms.Resize(tuple(temp_img_shape)), transforms.ToTensor()])
-    if args.dataset_name == "MNIST":
-        train_dataset = MNIST(root=args.dataset_path, train=True, transform=transform, download=False)
-        val_dataset = MNIST(root=args.dataset_path, train=False, transform=transform, download=False)
-    elif args.dataset_name == "CelebA":
-        train_dataset = CelebA(root=args.dataset_path, split='train', transform=transform, download=False)
-        val_dataset = CelebA(root=args.dataset_path, split='test', transform=transform, download=False)
-    else: raise ValueError("Dataset name not found.")
-    
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=16)
-    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=16)
-    print("Number of training examples:", len(train_dataset))
-    print("Number of test examples:", len(val_loader))
-    return train_loader, val_loader
 
 
 def elbo_loss(x, pred, z_mean, z_logvar, beta):
@@ -76,16 +58,7 @@ def train(args, model, train_loader, optimizer, device, indices_images, beta):
             optimizer.step()
             train_loss += loss.item()
             pbar.update(x.size(0))
-            
-            # pbar.set_postfix(loss=torch.mean(loss).item())
-            if idx in indices_images:
-                print(idx, indices_images, "entrou")
-                sampled = model.sampler(num_samples=train_loader.batch_size)
-                merged = torch.cat((x, pred, sampled), dim=0)
-                if not os.path.exists(args.path2results): os.makedirs(args.path2results)
-                viz(merged, f"{args.path2results}/rec_and_sampled_{idx}.png")
-                pred = pred.reshape(-1, *args.img_shape).detach()
-                images.append(pred.cpu())
+            log(args, model, train_loader, x, pred, idx, images, indices_images)
             batch_losses.append(loss.item())
 
     images = torch.cat(images, dim=0)
@@ -186,7 +159,6 @@ def main(args):
     train_loader, val_loader = get_data_loaders(args)
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
 
-
     train_model(model, 
                 train_loader, 
                 val_loader, 
@@ -195,7 +167,10 @@ def main(args):
                 epochs=args.epochs, 
                 early_stop_patience=args.early_stop_patience,
                 n_images=args.n_images)
-    
+
+    summary = torchinfo.summary(model, input_size=tuple(args.img_shape))
+    with open(f"{args.path2results}/model.txt", "w") as f:
+        f.write(str(summary))
 
 if __name__ == "__main__":
     args = get_args()

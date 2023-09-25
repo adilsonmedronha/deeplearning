@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUN_NAME="CelebA_linear_new"
+RUN_NAME="CelebA_linear_with_trick"
 RESULT_PATH="results/$RUN_NAME"
 
 python run.py \
@@ -10,7 +10,7 @@ python run.py \
     --dataset_name CelebA \
     --img_shape 3 64 64 \
     --batch_size 128 \
-    --epochs 10 \
+    --epochs 2 \
     --z_dim 20 \
     --n_images 2 \
     --lr 0.0001 \
@@ -18,5 +18,5 @@ python run.py \
     --model_save_path_best_loss_train "$RESULT_PATH/weights/best_train/" \
     --model_save_path_best_loss_val "$RESULT_PATH/weights/best_val/" \
     --model_save_path_last "$RESULT_PATH/weights/" \
-    --path2results "$RESULT_PATH/imgs/" \
+    --path2results "$RESULT_PATH" \
     --path2gif "/gif/CelebA_$RUN_NAME.gif"
