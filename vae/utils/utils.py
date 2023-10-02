@@ -9,6 +9,9 @@ import argparse
 from models import Lvae, PCvae, FCvae
 from torchvision import datasets, transforms
 from torchvision.datasets import CelebA, MNIST
+import onnx
+import onnxruntime
+import numpy as np
 
 
 def viz(images_batch, save_path="../", plot_in_jupyter=False):
@@ -51,9 +54,28 @@ def plot_losses(train_losses, val_losses, save_path):
     plt.savefig(save_path)
     plt.close()
 
-def save_model(model, save_path, name):
-    if not os.path.exists(save_path): os.makedirs(save_path)
-    torch.save(model.state_dict(),f"{save_path}/{name}")
+
+def save_model(model, save_path, epoch, args, is_train):
+    print(f"{save_path}")
+    save_path = args.model_save_path_best_loss_train if is_train else args.model_save_path_best_loss_val
+    os.makedirs(save_path, exist_ok=True)
+    torch.save(model.state_dict(), f"{save_path}/best_model_[{epoch+1}-{args.epochs}].pt")
+    features = np.prod(args.img_shape)
+    x = torch.rand(args.batch_size, features)
+    print(x)
+    print( f"{save_path}/best_model_[{epoch+1}-{args.epochs}].onnx")
+    x = x.to(args.device)
+    torch.onnx.export(model,                   
+                    x,                         
+                    f"{save_path}/best_model_[{epoch+1}-{args.epochs}].onnx",   
+                    export_params=True,        
+                    opset_version=10,          
+                    do_constant_folding=True,  
+                    input_names  = ['input'],   
+                    output_names = ['output'], 
+                    dynamic_axes = {'input'  : {0 : 'batch_size'}, 
+                                    'output' : {0 : 'batch_size'}})
+
 
 def get_models(args, device):
     model_classes = {
@@ -72,7 +94,7 @@ def get_models(args, device):
 
 def log(args, model, train_loader, x, pred, idx, images, indices_images, epoch, is_train):
     if idx in indices_images:
-        sampled = model.sampler(num_samples=train_loader.batch_size)
+        sampled, z = model.sampler(num_samples=train_loader.batch_size)
         merged = torch.cat((x, pred, sampled), dim=0)
 
         img_folder_name = "/train" if is_train else "/val"
@@ -106,6 +128,7 @@ def get_args():
     parser = argparse.ArgumentParser(description='A simple program with arguments')
     parser.add_argument('--model_type', type=str, help='')
     parser.add_argument('--run_name', type=str, help='')
+    parser.add_argument('--device', type=str, help='')
     parser.add_argument('--dataset_path', type=str, help='')
     parser.add_argument('--dataset_name', type=str, help='MNIST or CelebA')
     parser.add_argument('--img_shape', type=int, nargs='+', help='hw')  # Example: --img_shape 3 64 64
