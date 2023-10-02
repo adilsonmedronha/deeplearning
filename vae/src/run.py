@@ -65,7 +65,6 @@ def train(args, model, train_loader, optimizer, device, indices_images, beta, ep
 
 
 def val(args, model, val_loader, device, indices_images, beta, epoch):
-    
     val_loss = 0
     num_samples = len(val_loader.dataset)
     model.eval()
@@ -131,12 +130,12 @@ def train_model(model,
             early_stop_counter = 0
             save_model(model,
                        args.model_save_path_best_loss_val,
-                       f"best_val_loss_{epoch}_vae.pt")
+                       epoch, args, is_train=False)
         elif train_loss < best_train_loss:
             best_train_loss = train_loss
-            save_model(model, 
-                       args.model_save_path_best_loss_train, 
-                       f"best_train_loss_{epoch}_vae.pt")
+            save_model(model,
+                       args.model_save_path_best_loss_train,
+                       epoch, args, is_train=True)
         else:
             early_stop_counter += 1
             if early_stop_counter >= early_stop_patience:
@@ -149,11 +148,10 @@ def train_model(model,
                     step=epoch+1)
 
 def main(args):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = get_models(args, device)
+    model = get_models(args, args.device)
 
-    print("Device:", device)
-    model = model.to(device)
+    print("Device:", args.device)
+    model = model.to(args.device)
 
     train_loader, val_loader = get_data_loaders(args)
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
@@ -162,7 +160,7 @@ def main(args):
                 train_loader, 
                 val_loader, 
                 optimizer,
-                device,
+                args.device,
                 epochs=args.epochs, 
                 early_stop_patience=args.early_stop_patience,
                 n_images=args.n_images)

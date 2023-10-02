@@ -1,16 +1,17 @@
 #!/bin/bash
 
-RUN_NAME="CelebA_linear_no_beta"
+RUN_NAME="CelebA_linear_teste_onnx"
 RESULT_PATH="results/$RUN_NAME"
 
 python run.py \
-    --run_name $RUN_NAME \
     --model_type "lvae"  \
+    --run_name $RUN_NAME \
+    --device "cuda"  \
     --dataset_path "/media/SSD/DATASETS/CelebA_tiny/CelebA/" \
     --dataset_name CelebA \
     --img_shape 3 64 64 \
     --batch_size 16 \
-    --epochs 150 \
+    --epochs 100 \
     --z_dim 20 \
     --n_images 2 \
     --lr 0.0001 \

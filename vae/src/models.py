@@ -57,7 +57,7 @@ class Vae(nn.Module):
         pred = self.decoder(sample)
         pred = pred.reshape(-1, *self.image_shape)
         pred = torch.asarray(pred)
-        return pred
+        return pred, sample
     
         
 class Lvae(Vae):
