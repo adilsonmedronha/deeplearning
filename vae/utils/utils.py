@@ -70,14 +70,16 @@ def get_models(args, device):
     else:
         raise ValueError(f"Unsupported model_type: {args.model_type}")
 
-def log(args, model, train_loader, x, pred, idx, images, indices_images):
+def log(args, model, train_loader, x, pred, idx, images, indices_images, epoch, is_train):
     if idx in indices_images:
         sampled = model.sampler(num_samples=train_loader.batch_size)
         merged = torch.cat((x, pred, sampled), dim=0)
-        if not os.path.exists(args.path2results): 
-            os.makedirs(args.path2results)
-            os.makedirs(args.path2results + "/imgs")
-        viz(merged, f"{args.path2results}/imgs/rec_and_sampled_{idx}.png")
+
+        img_folder_name = "/train" if is_train else "/val"
+        os.makedirs(args.path2results, exist_ok=True)
+        save_at = args.path2results + "/imgs" + img_folder_name
+        os.makedirs(args.path2results + "/imgs" + img_folder_name, exist_ok=True)
+        viz(merged, f"{save_at}/rec_and_sampled_epoch_{epoch}_{idx}.png")
         pred = pred.reshape(-1, *args.img_shape).detach()
         images.append(pred.cpu())
 
@@ -93,8 +95,8 @@ def get_data_loaders(args):
         val_dataset = CelebA(root=args.dataset_path, split='test', transform=transform, download=False)
     else: raise ValueError("Dataset name not found.")
     
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=16)
-    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=16)
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=12)
+    val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=12)
     print("Number of training examples:", len(train_dataset))
     print("Number of test examples:", len(val_loader))
     return train_loader, val_loader

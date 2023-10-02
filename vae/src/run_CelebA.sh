@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUN_NAME="CelebA_linear_with_trick"
+RUN_NAME="CelebA_linear_no_beta"
 RESULT_PATH="results/$RUN_NAME"
 
 python run.py \
@@ -9,8 +9,8 @@ python run.py \
     --dataset_path "/media/SSD/DATASETS/CelebA_tiny/CelebA/" \
     --dataset_name CelebA \
     --img_shape 3 64 64 \
-    --batch_size 128 \
-    --epochs 2 \
+    --batch_size 16 \
+    --epochs 150 \
     --z_dim 20 \
     --n_images 2 \
     --lr 0.0001 \

@@ -35,14 +35,13 @@ def elbo_loss(x, pred, z_mean, z_logvar, beta):
     """
     reconstruction_loss = torch.sum(((pred - x) ** 2))
     kl_divergence = -0.5 * torch.sum(1 + z_logvar - z_mean.pow(2) - z_logvar.exp())
-    # TODO save reconstruction_loss and kl_divergence separately to plot them later
     wandb.log({'elbo':reconstruction_loss + kl_divergence,
                'reconstruction_loss': reconstruction_loss, 
                'kl_divergence': beta * kl_divergence})
     return reconstruction_loss +  beta * kl_divergence
 
 
-def train(args, model, train_loader, optimizer, device, indices_images, beta):
+def train(args, model, train_loader, optimizer, device, indices_images, beta, epoch):
     train_loss = 0
     batch_losses = []
     num_samples = len(train_loader.dataset)
@@ -58,14 +57,14 @@ def train(args, model, train_loader, optimizer, device, indices_images, beta):
             optimizer.step()
             train_loss += loss.item()
             pbar.update(x.size(0))
-            log(args, model, train_loader, x, pred, idx, images, indices_images)
+            log(args, model, train_loader, x, pred, idx, images, indices_images, epoch, is_train=True)
             batch_losses.append(loss.item())
 
     images = torch.cat(images, dim=0)
     return (train_loss / num_samples), batch_losses, images
 
 
-def val(args, model, val_loader, device, indices_images, beta):
+def val(args, model, val_loader, device, indices_images, beta, epoch):
     
     val_loss = 0
     num_samples = len(val_loader.dataset)
@@ -80,9 +79,7 @@ def val(args, model, val_loader, device, indices_images, beta):
             loss = elbo_loss(x, pred, mu, std, beta).item()
             val_loss += loss
             pbar.update(x.size(0))
-            if idx in indices_images:
-                pred = pred.reshape(-1, *args.img_shape).detach()
-                images.append(pred.cpu())
+            log(args, model, val_loader, x, pred, idx, images, indices_images, epoch, is_train=False)
             batch_losses.append(loss)
     images = torch.cat(images, dim=0)
     return (val_loss / num_samples), batch_losses, images
@@ -118,14 +115,16 @@ def train_model(model,
                                                            optimizer, 
                                                            device, 
                                                            indices_images,
-                                                           beta)
+                                                           beta, 
+                                                           epoch)
         
         val_loss, batch_val_loss, images_val  = val(args,
                                                     model, 
                                                     val_loader, 
                                                     device, 
                                                     indices_images, 
-                                                    beta)
+                                                    beta, 
+                                                    epoch)
         # scheduler.step(val_loss)
         if val_loss < best_val_loss:
             best_val_loss = val_loss
