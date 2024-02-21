@@ -1,2 +1,3 @@
 src/preds
 .DS_store
+__pycache__
